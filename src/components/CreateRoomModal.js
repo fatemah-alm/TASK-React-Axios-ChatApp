@@ -1,7 +1,7 @@
 import { Modal, Button, InputGroup, Form } from "react-bootstrap";
 import React, { useState } from "react";
 
-const CreateRoomModal = ({ closeModal, isOpen }) => {
+const CreateRoomModal = ({ closeModal, isOpen, createRoom }) => {
   const [room, setRoom] = useState({
     title: "",
     image: "",
@@ -9,9 +9,14 @@ const CreateRoomModal = ({ closeModal, isOpen }) => {
     messages: [],
   });
   const handleChange = (event) => {
+    setRoom({ ...room, [event.target.name]: event.target.value });
+
     // to do : setRoom state based in input
   };
+
   const handleSubmit = (event) => {
+    event.preventDefault();
+    createRoom(room);
     // to do : stop page from refreshing
     // call a function from app to create a room (pass room as a parameter)
 
